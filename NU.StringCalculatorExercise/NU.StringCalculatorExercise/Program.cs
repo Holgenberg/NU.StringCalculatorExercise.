@@ -6,10 +6,12 @@ namespace NU.StringCalculatorExercise
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            //var sum = Add("1\n2,3");
+            //Console.WriteLine(sum);
+            //Console.ReadKey();
         }
 
-        int Add(string numbers)
+        static int Add(string numbers)
         {
             var sum = 0;
 
@@ -17,37 +19,35 @@ namespace NU.StringCalculatorExercise
 
             foreach (var numberString in numbersStringArray)
             {
-                //if (numberString.Contains('\n'))
-                //{
-                //    sum += AddMultipleNumbersFromNumberString(numberString);
-                //}
+                if (numberString.Contains('\n'))
+                {
+                    sum += AddMultipleNumbersFromString(numberString);
+                }
 
-                //else
-                //{
-                //    sum += ParseNumberStringAndAddToSum(numberString);
-                //}
-
-                sum += ParseNumberStringAndAddToSum(numberString);
+                else
+                {
+                    sum += ParseNumberString(numberString);
+                }
             }
 
             return sum;
         }
 
-        //private int AddMultipleNumbersFromNumberString(string thisNumberString)
-        //{
-        //    var numberStringSumAdditive = 0;
+        static int AddMultipleNumbersFromString(string multipleNumberString)
+        {
+            var numberStringSumAdditive = 0;
 
-        //    var thisNumbersStringArray = thisNumberString.Split('\n');
+            var multipleNumberStringArray = multipleNumberString.Split('\n');
 
-        //    foreach (var numberString in thisNumbersStringArray)
-        //    {
-        //        numberStringSumAdditive += ParseNumberStringAndAddToSum(numberString);
-        //    }
+            foreach (var numberString in multipleNumberStringArray)
+            {
+                numberStringSumAdditive += ParseNumberString(numberString);
+            }
 
-        //    return numberStringSumAdditive;
-        //}
+            return numberStringSumAdditive;
+        }
 
-        private int ParseNumberStringAndAddToSum(string numberString)
+        static int ParseNumberString(string numberString)
         {
             int.TryParse(numberString, out int additive);
             return additive;
