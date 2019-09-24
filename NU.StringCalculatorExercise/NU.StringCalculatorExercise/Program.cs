@@ -9,7 +9,7 @@ namespace NU.StringCalculatorExercise
 
         static void Main(string[] args)
         {
-            var sum = Add("1001, 2, 3");
+            var sum = Add("//[***]\n1***2***3");
             Console.WriteLine(sum);
             Console.ReadKey();
         }
@@ -73,6 +73,12 @@ namespace NU.StringCalculatorExercise
                 var endIndexOfDelim = numbers.IndexOf("\n");
 
                 deliminator = numbers.Substring(startIndexOfDelim, endIndexOfDelim - startIndexOfDelim);
+            }
+
+            if (deliminator.StartsWith('[') && deliminator.EndsWith(']'))
+            {
+                deliminator = deliminator.Trim('[');
+                deliminator = deliminator.Trim(']');
             }
 
             return deliminator;
