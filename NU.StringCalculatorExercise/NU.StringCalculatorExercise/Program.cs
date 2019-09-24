@@ -1,12 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace NU.StringCalculatorExercise
 {
     class Program
     {
+        static List<int> NegativeAdditiveList = new List<int>();
+
         static void Main(string[] args)
         {
-            var sum = Add("1, 2, 3");
+            var sum = Add("-1, -2, -3");
             Console.WriteLine(sum);
             Console.ReadKey();
         }
@@ -32,7 +35,32 @@ namespace NU.StringCalculatorExercise
                 }
             }
 
+            if (NegativeAdditiveList.Count > 0)
+            {
+                ThrowNegativeExceptionMessage();
+            }
+
             return sum;
+        }
+
+        static void ThrowNegativeExceptionMessage()
+        {
+            var negativeExceptionMessage = "Negatives not allowed in calculation: ";
+
+            for (int i = 0; i < NegativeAdditiveList.Count; i++)
+            {
+                if (i == NegativeAdditiveList.Count - 1)
+                {
+                    negativeExceptionMessage += NegativeAdditiveList[i];
+                }
+
+                else
+                {
+                    negativeExceptionMessage += $"{NegativeAdditiveList[i]}, ";
+                }
+            }
+
+            throw new Exception(negativeExceptionMessage);
         }
 
         static string SetDeliminator(string numbers)
@@ -67,6 +95,12 @@ namespace NU.StringCalculatorExercise
         static int ParseNumberString(string numberString)
         {
             int.TryParse(numberString, out int additive);
+
+            if (additive < 0)
+            {
+                NegativeAdditiveList.Add(additive);
+            }
+
             return additive;
         }
     }
