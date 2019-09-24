@@ -9,7 +9,7 @@ namespace NU.StringCalculatorExercise
 
         static void Main(string[] args)
         {
-            var sum = Add("-1, -2, -3");
+            var sum = Add("1001, 2, 3");
             Console.WriteLine(sum);
             Console.ReadKey();
         }
@@ -99,6 +99,11 @@ namespace NU.StringCalculatorExercise
             if (additive < 0)
             {
                 NegativeAdditiveList.Add(additive);
+            }
+
+            else if (additive > 1000)
+            {
+                additive = 0;
             }
 
             return additive;
